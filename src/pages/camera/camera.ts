@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Camera } from '@ionic-native/camera';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 /**
  * Generated class for the CameraPage page.
@@ -14,23 +14,36 @@ import { Camera } from '@ionic-native/camera';
   templateUrl: 'camera.html',
 })
 export class CameraPage {
-  base64Image: any;
+  statusMessage: string;
+  private imageSrc: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public camera: Camera) {
+  options: CameraOptions = {
+    quality: 100,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
+  }
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public camera: Camera,
+    public ngZone: NgZone) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CameraPage');
   }
 
-  accessGallery() {
-    this.camera.getPicture({
-      sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
-      destinationType: this.camera.DestinationType.DATA_URL
-    }).then((imageData) => {
-      this.base64Image = 'data:image/jpeg;base64' + imageData;
-    }, (err) => {
-      console.log(err);
+  openGallery() {
+    this.camera.getPicture(this.options)
+    .then(file_uri => this.imageSrc = file_uri, 
+    err => this.setStatus(err));   
+  }
+
+  setStatus(message) {
+    console.log(message);
+    this.ngZone.run(() => {
+      this.statusMessage = message;
     });
   }
 

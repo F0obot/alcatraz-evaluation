@@ -15,6 +15,15 @@
 
 
 <ion-content padding>
-    <button ion-button color="primary" (click)="accessGallery()">Open Gallery</button>
-    <img [src]="base64Image" *ngIf="base64Image" />
+    <div class="gallery-button" text-center>
+        <img [src]="imageSrc" />
+        <ion-icon name="images" on-tap="openGallery()"></ion-icon>
+        <p>Choose a Photo</p>
+    </div>
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <p style="text-align:center">{{ statusMessage }}</p>
+    </ion-toolbar>
+</ion-footer>
