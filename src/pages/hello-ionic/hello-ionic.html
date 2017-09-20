@@ -13,12 +13,11 @@
     <h3>Press the button below to checkout some of this devices contacts</h3>
 
     <p>
-        <button ion-button color="primary" (click)="seeContacts()">Toggle Menu</button>
+        <button ion-button color="primary" (click)="seeContacts()">Show Contacts</button>
         <br/>
         <ion-list>
             <ion-list-header>Contacts</ion-list-header>
-            <ion-item *ngFor="let item of contactsfound">
-                <div class={ { item.displayName }} </ion-item>
+            <ion-item *ngFor="let item of contactsfound">{{ item.displayName }}</ion-item>
         </ion-list>
     </p>
 
