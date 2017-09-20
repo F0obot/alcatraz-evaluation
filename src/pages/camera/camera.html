@@ -9,17 +9,17 @@
         <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-        <ion-title>Camera Roll</ion-title>
+        <ion-title>Camera</ion-title>
     </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-    <div class="gallery-button" text-center>
-        <img [src]="imageSrc" />
-        <ion-icon name="images" on-tap="openGallery()"></ion-icon>
-        <p>Choose a Photo</p>
-    </div>
+    <button ion-button color="primary" (click)="openGallery()">Take a picture</button>
+    <p>
+        <img [src]="base64Image" *ngIf="base64Image" />
+    </p>
+
 </ion-content>
 
 <ion-footer>

@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
@@ -15,19 +15,21 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 })
 export class CameraPage {
   statusMessage: string;
-  private imageSrc: string;
+  public base64Image: string;
 
   options: CameraOptions = {
     quality: 100,
     destinationType: this.camera.DestinationType.DATA_URL,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
+    targetWidth: 500,
+    targetHeight: 500,
+    correctOrientation: false,
+    saveToPhotoAlbum: true,
   }
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public camera: Camera,
-    public ngZone: NgZone) {
+    private camera: Camera) {
+    this.camera = camera;
   }
 
   ionViewDidLoad() {
@@ -36,15 +38,16 @@ export class CameraPage {
 
   openGallery() {
     this.camera.getPicture(this.options)
-    .then(file_uri => this.imageSrc = file_uri, 
-    err => this.setStatus(err));   
+      .then((imageData) => {
+        // imageData is a base64 encoded string
+        this.base64Image = "data:image/jpeg;base64," + imageData;
+      },
+      err => this.setStatus(err));
   }
 
   setStatus(message) {
     console.log(message);
-    this.ngZone.run(() => {
-      this.statusMessage = message;
-    });
+    this.statusMessage = message;
   }
 
 }

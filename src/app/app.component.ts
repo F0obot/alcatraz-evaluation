@@ -33,7 +33,7 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Welcome', component: HelloIonicPage },
+      { title: 'Contacts', component: HelloIonicPage },
       { title: 'Bluetooth', component: BluetoothPage },
       { title: 'Camera', component: CameraPage },
       { title: 'Simple List', component: ListPage }

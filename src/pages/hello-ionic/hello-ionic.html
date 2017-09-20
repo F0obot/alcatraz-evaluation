@@ -3,23 +3,23 @@
         <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-        <ion-title>Alcatraz Ionic Eval</ion-title>
+        <ion-title>Contacts</ion-title>
     </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
 
-    <h3>Welcome to the Alcatraz Ionic Evaluation app!</h3>
+    <h3>Press the button below to checkout some of this devices contacts</h3>
 
     <p>
-        This project demonstrates ease of development and footprint for using Ionic on top of Angular!
+        <button ion-button color="primary" (click)="seeContacts()">Toggle Menu</button>
+        <br/>
+        <ion-list>
+            <ion-list-header>Contacts</ion-list-header>
+            <ion-item *ngFor="let item of contactsfound">
+                <div class={ { item.displayName }} </ion-item>
+        </ion-list>
     </p>
-    <p>
-        Reveal the side menu for a few simple tests
-    </p>
-    <!-- <p>
-        <button ion-button color="primary" menuToggle>Toggle Menu</button>
-    </p> -->
 
 </ion-content>

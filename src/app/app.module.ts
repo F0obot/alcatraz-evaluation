@@ -16,6 +16,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Camera } from '@ionic-native/camera';
 import { BLE } from '@ionic-native/ble';
+import { Contacts } from '@ionic-native/contacts';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { BLE } from '@ionic-native/ble';
     StatusBar,
     BLE,
     Camera,
+    Contacts,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
